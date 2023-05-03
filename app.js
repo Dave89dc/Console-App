@@ -40,15 +40,26 @@ function parseCsvToJson(data) {
     const tempArray = [];
     for (let i = 0; i < dataToArray.length; i++) {
         const data = dataToArray[i];
+        tempArray.push(data.split(','));
     };
-};
-
-function writeJsonToFile(json) {
-    
-    try {
-        fs.writeFileSync('./Output/test.json', json);
-    } catch (err) {
-        console.log(err);
+    const newArray = [];
+    const newObject = {};
+    for (let i = 0; i < tempArray.length; i++) {
+        const element = tempArray[i];
+        for (let j = 0; j < element.length; j++) {
+            const newElement = element[j];
+        }
     }
-
 };
+
+// function writeJsonToFile(json) {
+    
+//     try {
+//         fs.writeFileSync('./Output/test.json', json);
+//     } catch (err) {
+//         console.log(err);
+//     }
+
+// };
+
+
