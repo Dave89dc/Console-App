@@ -34,17 +34,16 @@ function parseCsvToJson(data) {
     // 12) ritornare la stringa json
 
     const dataToArray = data.split(/\r?\n/);
-    const intestazione = dataToArray.splice(0, 1);
-    const intestArray = intestazione[0].split(',');
-    console.log(intestArray)
+    const intestazione = dataToArray.shift();
+    const intestArray = intestazione.split(',');
     const tempArray = [];
     for (let i = 0; i < dataToArray.length; i++) {
         const data = dataToArray[i];
-        tempArray.push(data.split(','));
+        const dataArray = data.split(',');
         const newObject = {};
         for (let j = 0; j < intestArray.length; j++) {
             const element = intestArray[j];
-            const value = tempArray[j];
+            const value = dataArray[j];
             newObject[element] = value;
         }
         tempArray.push(newObject);
