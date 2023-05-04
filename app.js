@@ -40,15 +40,21 @@ function parseCsvToJson(data) {
     for (let i = 0; i < dataToArray.length; i++) {
         const data = dataToArray[i];
         const dataArray = data.split(',');
+        console.log(dataArray)
         const newObject = {};
         for (let j = 0; j < intestArray.length; j++) {
             const element = intestArray[j];
             const value = dataArray[j];
-            newObject[element] = value;
-        }
+            if(isNaN(value * 1)){
+                newObject[element] = value;
+            } else if(!isNaN(value * 1)) {
+                newObject[element] = value * 1;
+            };
+        };
         tempArray.push(newObject);
     };
     const jsonString = JSON.stringify(tempArray);
+    console.log(jsonString)
     return jsonString;
 };
 
