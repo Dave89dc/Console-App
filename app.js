@@ -6,8 +6,7 @@ try {
     data = fs.readFileSync('./Data/test.csv', 'utf8');
     console.log(data);
     const json = parseCsvToJson(data);
-    console.log(json)
-    // writeJsonToFile(json);
+    writeJsonToFile(json);
 } catch (err) {
     console.log(err);
 };
@@ -37,29 +36,31 @@ function parseCsvToJson(data) {
 
     const dataToArray = data.split(/\r?\n/);
     const intestazione = dataToArray.splice(0, 1);
+    const intestArray = intestazione.split(',');
     const tempArray = [];
     for (let i = 0; i < dataToArray.length; i++) {
         const data = dataToArray[i];
         tempArray.push(data.split(','));
-    };
-    const newArray = [];
-    const newObject = {};
-    for (let i = 0; i < tempArray.length; i++) {
-        const element = tempArray[i];
-        for (let j = 0; j < element.length; j++) {
-            const newElement = element[j];
+        const newObject = {};
+        for (let j = 0; j < intestArray.length; j++) {
+            const element = intestArray[j];
+            const value = tempArray[j];
+            newObject[element] = value;
         }
-    }
+        tempArray.push(newObject);
+    };
+    const jsonString = JSON.stringify(tempArray);
+    return jsonString;
 };
 
-// function writeJsonToFile(json) {
+function writeJsonToFile(json) {
     
-//     try {
-//         fs.writeFileSync('./Output/test.json', json);
-//     } catch (err) {
-//         console.log(err);
-//     }
+    try {
+        fs.writeFileSync('./Output/test.json', json);
+    } catch (err) {
+        console.log(err);
+    }
 
-// };
+};
 
 
