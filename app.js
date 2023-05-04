@@ -38,6 +38,7 @@ function parseCsvToJson(data) {
     const intestazione = dataToArray.splice(0, 1);
     const intestArray = intestazione.split(',');
     const tempArray = [];
+<<<<<<< Updated upstream
     for (let i = 0; i < dataToArray.length; i++) {
         const data = dataToArray[i];
         tempArray.push(data.split(','));
@@ -51,6 +52,30 @@ function parseCsvToJson(data) {
     };
     const jsonString = JSON.stringify(tempArray);
     return jsonString;
+=======
+    const intestazioneArray = intestazione.split(',');
+    console.log(intestazioneArray)
+    for (let i = 0; i < intestazione.length; i++) {
+        const data = intestazione[i];
+        intestazioneArray.push(data.split(','));
+        console.log(intestazioneArray)
+    };
+    const newArray = [];
+    const newObject = {};
+    for (let i = 0; i < intestazioneArray.length; i++) {
+        const element = intestazioneArray[i];
+        newObject[element] = element;
+    };
+    // for (let i = 0; i < tempArray.length; i++) {
+    //     const element = tempArray[i];
+    //     for (let j = 0; j < element.length; j++) {
+    //         const newElement = element[j];
+    //         newObject[intestazione[j]] = newElement;
+    //     }
+    //     newArray.push(newObject);
+    // };
+    return newArray;
+>>>>>>> Stashed changes
 };
 
 function writeJsonToFile(json) {
