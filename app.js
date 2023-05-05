@@ -8,11 +8,12 @@ try {
     data = fs.readFileSync(inputUrl, 'utf8');
     const json = parseCsvToJson(data);
     writeJsonToFile(json, outputUrl);
-} catch (err) {
+} catch(err) {
     console.log(err);
 };
 
-function parseCsvToJson(data) {
+function parseCsvToJson(data){
+
     // 1) data = "name,surname,yob,gender\njing,wang,1993,female\nsimone,maccarone,2003,male\npietro,viglino,1988,male\nvalentina,cherubini,2001,female";
     // 2) trasformare la stringa in un array di stringhe;
     //  righe = ["name,surname,yob,gender", "jing,wang,1993,female", "simone,maccarone,2003,male", "pietro,viglino,1988,male", "valentina,cherubini,2001,female"];
@@ -56,16 +57,13 @@ function parseCsvToJson(data) {
     };
     const jsonString = JSON.stringify(tempArray);
     return jsonString;
+
 };
 
 function writeJsonToFile(json, outputUrl) {
-    
     try {
         fs.writeFileSync(outputUrl, json);
-    } catch (err) {
+    } catch(err){
         console.log(err);
-    }
-
+    };
 };
-
-
